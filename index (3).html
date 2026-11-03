@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vignesh L. | Freelancer & Python Developer</title>
+<meta name="description" content="Portfolio of Vignesh L. - BCA graduate, fresher Python developer and freelancer in data entry, PDF services, presentations, video editing and basic website development.">
+<style>
+  :root {
+    --bg: #0a0e13;
+    --bg-2: #0f151d;
+    --card: #131a24;
+    --line: #1e2834;
+    --text: #e9eef5;
+    --muted: #8d99a9;
+    --cyan: #3fd0e8;
+    --red: #e5383b;
+    --grad: linear-gradient(135deg, var(--cyan), var(--red));
+    --radius: 16px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.65; overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  .glow {
+    position: fixed; width: 60vw; height: 60vw; border-radius: 50%;
+    filter: blur(130px); opacity: .16; z-index: -1; pointer-events: none;
+  }
+  .glow.c { background: var(--cyan); top: -22vw; left: -22vw; }
+  .glow.r { background: var(--red); bottom: -22vw; right: -22vw; }
+
+  /* Navigation */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 6%; backdrop-filter: blur(12px);
+    background: rgba(10,14,19,.65); transition: padding .3s, border-color .3s;
+    border-bottom: 1px solid transparent;
+  }
+  nav.scrolled { padding: 12px 6%; border-bottom-color: var(--line); }
+  .logo { font-weight: 700; font-size: 1.2rem; }
+  .logo span { background: var(--grad); -webkit-background-clip: text; color: transparent; }
+  .nav-links { display: flex; gap: 26px; list-style: none; }
+  .nav-links a { color: var(--muted); font-size: .92rem; position: relative; transition: color .3s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+  .nav-links a::after {
+    content: ""; position: absolute; left: 0; bottom: -6px; height: 2px; width: 0;
+    background: var(--grad); transition: width .3s;
+  }
+  .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+  .menu-btn { display: none; background: none; border: none; color: var(--text); font-size: 1.6rem; cursor: pointer; }
+
+  section { padding: 110px 6%; max-width: 1200px; margin: 0 auto; }
+  .eyebrow { color: var(--cyan); text-transform: uppercase; letter-spacing: 3px; font-size: .78rem; font-weight: 600; }
+  h2 { font-size: 2.1rem; margin: 10px 0 14px; }
+  h3 { font-size: 1.15rem; margin-bottom: 8px; }
+  .lead { color: var(--muted); max-width: 680px; }
+  .grad-text { background: var(--grad); -webkit-background-clip: text; color: transparent; }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh; display: grid; grid-template-columns: 1.1fr .9fr;
+    gap: 50px; align-items: center; padding-top: 120px;
+  }
+  .hero h1 { font-size: clamp(2.6rem, 6vw, 4.4rem); line-height: 1.1; margin: 14px 0 18px; }
+  .role { font-size: 1.1rem; color: var(--muted); margin-bottom: 26px; min-height: 1.7em; }
+  .role b { color: var(--text); font-weight: 600; }
+  .btns { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+  .btn {
+    padding: 13px 26px; border-radius: 40px; font-weight: 600; font-size: .95rem;
+    border: 1px solid transparent; cursor: pointer; transition: transform .25s, box-shadow .25s;
+  }
+  .btn.primary { background: var(--grad); color: #fff; }
+  .btn.ghost { border-color: #2a3644; color: var(--text); }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(63,208,232,.2); }
+
+  .photo-wrap { position: relative; justify-self: center; }
+  .photo-wrap::before {
+    content: ""; position: absolute; inset: -6px; border-radius: 30px;
+    background: var(--grad); z-index: -1; filter: blur(18px); opacity: .6;
+    animation: pulse 4s ease-in-out infinite;
+  }
+  .photo-wrap img {
+    width: min(380px, 80vw); aspect-ratio: 4/5; object-fit: cover;
+    border-radius: 24px; border: 1px solid var(--line);
+  }
+  @keyframes pulse { 0%,100% { opacity: .4 } 50% { opacity: .75 } }
+
+  /* Cards */
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 28px; transition: transform .3s, border-color .3s;
+  }
+  .card:hover { transform: translateY(-6px); border-color: var(--cyan); }
+  .card p, .card li { color: var(--muted); font-size: .95rem; }
+  .card ul { padding-left: 18px; margin-top: 10px; }
+  .card li { margin-bottom: 6px; }
+  .tag {
+    display: inline-block; font-size: .75rem; color: var(--cyan);
+    border: 1px solid #1f4a55; border-radius: 20px; padding: 3px 12px; margin: 12px 6px 0 0;
+  }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 40px; }
+  .icon {
+    width: 46px; height: 46px; border-radius: 12px; background: var(--grad);
+    display: grid; place-items: center; font-size: 1.3rem; margin-bottom: 16px;
+  }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+  .stat { text-align: center; padding: 26px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); }
+  .stat strong { font-size: 2.1rem; }
+  .stat p { color: var(--muted); font-size: .9rem; }
+
+  /* Skills */
+  .skill-group { margin-top: 40px; display: grid; gap: 26px; }
+  .skill-row h3 { color: var(--text); font-size: 1rem; margin-bottom: 12px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip {
+    padding: 9px 18px; border-radius: 30px; background: var(--card);
+    border: 1px solid var(--line); font-size: .9rem; color: var(--muted); transition: all .3s;
+  }
+  .chip:hover { border-color: var(--red); color: var(--text); }
+
+  /* Timeline */
+  .timeline { margin-top: 40px; border-left: 2px solid var(--line); padding-left: 30px; }
+  .item { position: relative; margin-bottom: 36px; }
+  .item::before {
+    content: ""; position: absolute; left: -38px; top: 6px; width: 14px; height: 14px;
+    border-radius: 50%; background: var(--grad); box-shadow: 0 0 0 4px var(--bg);
+  }
+  .item small { color: var(--cyan); font-weight: 600; font-size: .85rem; }
+  .item h3 { margin: 4px 0; }
+  .item p { color: var(--muted); }
+
+  /* Social highlight */
+  .highlight {
+    margin-top: 40px; display: flex; align-items: center; gap: 28px; flex-wrap: wrap;
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 34px;
+  }
+  .highlight strong { font-size: 2.6rem; }
+  .highlight p { color: var(--muted); max-width: 520px; }
+
+  /* Contact */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+  .contact-item {
+    display: flex; align-items: center; gap: 16px; padding: 22px 24px;
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    transition: transform .3s, border-color .3s;
+  }
+  .contact-item:hover { transform: translateY(-4px); border-color: var(--cyan); }
+  .contact-item .icon { margin: 0; flex-shrink: 0; }
+  .contact-item small { display: block; color: var(--muted); font-size: .8rem; }
+  .contact-item span.val { font-weight: 600; word-break: break-all; }
+
+  footer { text-align: center; padding: 30px; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); }
+
+  /* Reveal animation */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .grid-3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; text-align: center; padding-top: 110px; }
+    .btns { justify-content: center; }
+    .photo-wrap { order: -1; }
+    .menu-btn { display: block; }
+    .nav-links {
+      position: fixed; top: 60px; right: 0; width: 70%; height: calc(100vh - 60px);
+      flex-direction: column; background: var(--bg-2); padding: 40px;
+      transform: translateX(100%); transition: transform .35s ease;
+    }
+    .nav-links.open { transform: translateX(0); }
+    .grid-2, .contact-grid { grid-template-columns: 1fr; }
+    .highlight { justify-content: center; text-align: center; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 85px 6%; }
+    .grid-3, .stats { grid-template-columns: 1fr; }
+    .timeline { padding-left: 22px; }
+    .item::before { left: -29px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+<div class="glow c"></div>
+<div class="glow r"></div>
+
+<nav id="nav">
+  <div class="logo">Vignesh<span>.L</span></div>
+  <ul class="nav-links" id="links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div>
+    <div class="eyebrow">Freelancer · Python Developer (Fresher)</div>
+    <h1>Hi, I'm <span class="grad-text">Vignesh L.</span></h1>
+    <p class="role">I work as a <b id="typed"></b><span>|</span></p>
+    <p class="lead">BCA graduate from Kancheepuram, Tamil Nadu, with foundational skills in Python, Git, GitHub, HTML and CSS. I also offer freelance services in data entry, PDF preparation, presentation design, video editing and basic website development.</p>
+    <div class="btns">
+      <a href="#contact" class="btn primary">Hire me</a>
+      <a href="#projects" class="btn ghost">View projects</a>
+    </div>
+  </div>
+  <div class="photo-wrap">
+    <img src="photo.png" alt="Portrait of Vignesh L">
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="eyebrow reveal">About me</div>
+  <h2 class="reveal">Eager to learn, careful with my work</h2>
+  <p class="lead reveal">I'm an entry-level Python developer who enjoys logical problem-solving and writing clean, readable code. I'm eager to contribute to real-world projects, deliver quality work and grow in a collaborative environment.</p>
+
+  <div class="stats">
+    <div class="stat reveal"><strong class="grad-text">17K+</strong><p>Followers on Matro_editx</p></div>
+    <div class="stat reveal"><strong class="grad-text">3</strong><p>Python and web projects</p></div>
+    <div class="stat reveal"><strong class="grad-text">2024</strong><p>BCA graduate</p></div>
+  </div>
+
+  <div class="card reveal" style="margin-top:30px">
+    <h3>Why work with me?</h3>
+    <p>I take the time to understand each project's goals and requirements before choosing an approach. My focus is on:</p>
+    <div class="chips" style="margin-top:14px">
+      <span class="chip">Clear communication</span>
+      <span class="chip">Careful, accurate work</span>
+      <span class="chip">Timely delivery</span>
+      <span class="chip">Understanding client needs</span>
+      <span class="chip">Useful, expectation-meeting results</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="eyebrow reveal">Services</div>
+  <h2 class="reveal">How I can help</h2>
+  <p class="lead reveal">Freelance services I provide, along with the tools I use for each.</p>
+  <div class="grid-3">
+    <div class="card reveal">
+      <div class="icon">🌐</div>
+      <h3>Website Development</h3>
+      <p>Simple, responsive websites built with HTML and CSS.</p>
+    </div>
+    <div class="card reveal">
+      <div class="icon">⌨️</div>
+      <h3>Data Entry & Copy-Paste</h3>
+      <p>Accurate data entry, typing and information organization.</p>
+    </div>
+    <div class="card reveal">
+      <div class="icon">📄</div>
+      <h3>PDF Services</h3>
+      <p>PDF creation, formatting and document preparation.</p>
+    </div>
+    <div class="card reveal">
+      <div class="icon">🎬</div>
+      <h3>Video Editing</h3>
+      <p>Short-form videos, reels and social media content.</p>
+    </div>
+    <div class="card reveal">
+      <div class="icon">📊</div>
+      <h3>PowerPoint Presentations</h3>
+      <p>Clear, organized and professional presentation slides.</p>
+    </div>
+    <div class="card reveal">
+      <div class="icon">📈</div>
+      <h3>MS Excel & Word</h3>
+      <p>Basic spreadsheet organization and document formatting.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="eyebrow reveal">Projects</div>
+  <h2 class="reveal">Featured technical work</h2>
+  <div class="grid-3">
+    <div class="card reveal">
+      <h3>Python Calculator</h3>
+      <p>A command-line calculator supporting addition, subtraction, multiplication and division.</p>
+      <ul>
+        <li>Functions, conditionals and loops to handle user choices</li>
+        <li>Input validation and handling of division by zero</li>
+        <li>Managed with Git and published on GitHub with a README</li>
+      </ul>
+      <span class="tag">Python</span><span class="tag">Git</span><span class="tag">GitHub</span>
+    </div>
+    <div class="card reveal">
+      <h3>Odd or Even Checker</h3>
+      <p>A Python program that identifies whether a number is odd or even using the modulus operator.</p>
+      <ul>
+        <li>Conditional statements and user input handling</li>
+        <li>Basic error handling for non-numeric entries</li>
+        <li>Source code kept in a GitHub repository</li>
+      </ul>
+      <span class="tag">Python</span><span class="tag">Git</span><span class="tag">GitHub</span>
+    </div>
+    <div class="card reveal">
+      <h3>Personal Website</h3>
+      <p>A static website designed to present information clearly to end users.</p>
+      <ul>
+        <li>Built from scratch with semantic HTML</li>
+        <li>Styled with CSS for a clean layout</li>
+      </ul>
+      <span class="tag">HTML</span><span class="tag">CSS</span>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE & SOCIAL -->
+<section id="experience">
+  <div class="eyebrow reveal">Experience & social media</div>
+  <h2 class="reveal">Content creation</h2>
+  <div class="highlight reveal">
+    <strong class="grad-text">~17K</strong>
+    <div>
+      <h3>Instagram Video Editing Page: Matro_editx</h3>
+      <p>I managed this video editing page, which grew to approximately 17,000 followers. It built my practical skills in video editing, creative content preparation and social media presentation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="eyebrow reveal">Skills</div>
+  <h2 class="reveal">Technical toolkit</h2>
+  <div class="skill-group">
+    <div class="skill-row reveal">
+      <h3>Programming</h3>
+      <div class="chips">
+        <span class="chip">Python fundamentals</span>
+        <span class="chip">Variables & data types</span>
+        <span class="chip">Loops & functions</span>
+        <span class="chip">Conditionals</span>
+        <span class="chip">Lists & dictionaries</span>
+        <span class="chip">File handling</span>
+        <span class="chip">OOP</span>
+      </div>
+    </div>
+    <div class="skill-row reveal">
+      <h3>Version control</h3>
+      <div class="chips">
+        <span class="chip">Git</span>
+        <span class="chip">GitHub</span>
+        <span class="chip">Commits, branches & merging</span>
+        <span class="chip">Push, pull & pull requests</span>
+      </div>
+    </div>
+    <div class="skill-row reveal">
+      <h3>Web development</h3>
+      <div class="chips">
+        <span class="chip">HTML</span>
+        <span class="chip">CSS</span>
+      </div>
+    </div>
+    <div class="skill-row reveal">
+      <h3>Tools</h3>
+      <div class="chips">
+        <span class="chip">VS Code</span>
+        <span class="chip">Command Line</span>
+        <span class="chip">MS Word</span>
+        <span class="chip">MS Excel</span>
+        <span class="chip">PowerPoint</span>
+        <span class="chip">Video editing</span>
+      </div>
+    </div>
+    <div class="skill-row reveal">
+      <h3>Core strengths</h3>
+      <div class="chips">
+        <span class="chip">Problem-solving</span>
+        <span class="chip">Debugging</span>
+        <span class="chip">Document formatting</span>
+        <span class="chip">PDF creation</span>
+        <span class="chip">Data entry</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION & CERTIFICATIONS -->
+<section id="education">
+  <div class="eyebrow reveal">Education & certifications</div>
+  <h2 class="reveal">Background</h2>
+  <div class="timeline">
+    <div class="item reveal">
+      <small>June 2021 – April 2024</small>
+      <h3>Bachelor of Computer Applications (BCA)</h3>
+      <p>Sri Sankara Arts and Science College, Enathur<br>CGPA: 8.07</p>
+    </div>
+    <div class="item reveal">
+      <small>2020 – 2021</small>
+      <h3>Higher Secondary Education</h3>
+      <p>Don Bosco Higher Secondary School, Pannur<br>Percentage: 83.14%</p>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card reveal">
+      <h3>Certified in Computer Software</h3>
+      <p>Mahakavi Bharathiyar Community College (Sevalaya), July 2022 – October 2022</p>
+    </div>
+    <div class="card reveal">
+      <h3>Python Programming Certificate</h3>
+      <p>CodSoft</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="eyebrow reveal">Contact</div>
+  <h2 class="reveal">Let's connect</h2>
+  <p class="lead reveal">Ready to discuss your next project? Reach out through any of the channels below.</p>
+  <div class="contact-grid">
+    <a class="contact-item reveal" href="mailto:vickyvignes480@gmail.com">
+      <div class="icon">✉️</div>
+      <div><small>Email</small><span class="val">vickyvignes480@gmail.com</span></div>
+    </a>
+    <a class="contact-item reveal" href="tel:+919360288283">
+      <div class="icon">📞</div>
+      <div><small>Phone</small><span class="val">+91 93602 88283</span></div>
+    </a>
+    <a class="contact-item reveal" href="https://wa.me/919360288283" target="_blank" rel="noopener">
+      <div class="icon">💬</div>
+      <div><small>WhatsApp</small><span class="val">Message me</span></div>
+    </a>
+    <a class="contact-item reveal" href="https://www.linkedin.com/in/vignesh-l-44349a254" target="_blank" rel="noopener">
+      <div class="icon">🔗</div>
+      <div><small>LinkedIn</small><span class="val">Vignesh L</span></div>
+    </a>
+    <a class="contact-item reveal" href="https://www.instagram.com/matro_editx" target="_blank" rel="noopener">
+      <div class="icon">🎞️</div>
+      <div><small>Professional Instagram</small><span class="val">@matro_editx</span></div>
+    </a>
+    <a class="contact-item reveal" href="https://www.instagram.com/vicky_smooth__lad" target="_blank" rel="noopener">
+      <div class="icon">📸</div>
+      <div><small>Personal Instagram</small><span class="val">@vicky_smooth__lad</span></div>
+    </a>
+  </div>
+  <p class="lead reveal" style="margin:30px auto 0"><span style="color:var(--text)">Location:</span> Kancheepuram, Tamil Nadu, India</p>
+</section>
+
+<footer>© <span id="year"></span> Vignesh L. Built with care.</footer>
+
+<script>
+  // Navbar border on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40));
+
+  // Mobile menu
+  const links = document.getElementById('links');
+  document.getElementById('menuBtn').addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // Active nav link
+  const navLinks = links.querySelectorAll('a');
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (scrollY >= s.offsetTop - 200) current = s.id; });
+    navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+  });
+
+  // Scroll reveal
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Typing effect (roles taken from the document)
+  const roles = ['Freelancer', 'Python Developer', 'Video Editor', 'Website Developer'];
+  const typed = document.getElementById('typed');
+  let r = 0, c = 0, deleting = false;
+  (function type() {
+    const word = roles[r];
+    typed.textContent = deleting ? word.slice(0, c--) : word.slice(0, c++);
+    let delay = deleting ? 50 : 110;
+    if (!deleting && c > word.length) { deleting = true; delay = 1600; }
+    else if (deleting && c < 0) { deleting = false; r = (r + 1) % roles.length; c = 0; delay = 400; }
+    setTimeout(type, delay);
+  })();
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
